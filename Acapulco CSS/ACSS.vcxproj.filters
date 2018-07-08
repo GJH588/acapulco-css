@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Hooks.cpp">
+      <Filter>Hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Settings.cpp">
+      <Filter>Utils\Settings</Filter>
+    </ClCompile>
+    <ClCompile Include="CBhop.cpp">
+      <Filter>Features\Bhop</Filter>
+    </ClCompile>
+    <ClCompile Include="CESP.cpp">
+      <Filter>Features\ESP</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="DLLMain.cpp" />
+    <ClCompile Include="CDrawManager.cpp">
+      <Filter>Utils\DrawManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CGlobalVars.cpp">
+      <Filter>SDK\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="CAutoStrafe.cpp">
+      <Filter>Features\AutoStrafe</Filter>
+    </ClCompile>
+    <ClCompile Include="CColorManager.cpp">
+      <Filter>Utils\ColorManager</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Vector.h">
+      <Filter>Utils\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="mathlib.h">
+      <Filter>Utils\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="VMT Hook.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Hooks.h">
+      <Filter>Hooks</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Settings.h">
+      <Filter>Utils\Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="CBhop.h">
+      <Filter>Features\Bhop</Filter>
+    </ClInclude>
+    <ClInclude Include="SDK.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="CGlobals.h">
+      <Filter>SDK\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="CUserCmd.h">
+      <Filter>SDK\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="CBaseEntity.h">
+      <Filter>SDK\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="ISurface.h">
+      <Filter>SDK\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="IPanel.h">
+      <Filter>SDK\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="player_info_t.h">
+      <Filter>SDK\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="CClientClass.h">
+      <Filter>SDK\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="CHLClient.h">
+      <Filter>SDK\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="CEngineClient.h">
+      <Filter>SDK\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="CEntityList.h">
+      <Filter>SDK\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="CInput.h">
+      <Filter>SDK\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="CVerifiedUserCmd.h">
+      <Filter>SDK\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="CESP.h">
+      <Filter>Features\ESP</Filter>
+    </ClInclude>
+    <ClInclude Include="crc32.h">
+      <Filter>SDK\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="getvfunc.h">
+      <Filter>SDK\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="CDrawManager.h">
+      <Filter>Utils\DrawManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CGlobalVars.h">
+      <Filter>SDK\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="CTrace.h">
+      <Filter>SDK\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="CAutoStrafe.h">
+      <Filter>Features\AutoStrafe</Filter>
+    </ClInclude>
+    <ClInclude Include="CScreen.h">
+      <Filter>SDK\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="CSetupPlayer.h">
+      <Filter>SDK\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="CColorManager.h">
+      <Filter>Utils\ColorManager</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="SDK">
+      <UniqueIdentifier>{1a4110ed-81f3-4a02-a3e6-74cf93228fbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Features">
+      <UniqueIdentifier>{c7ca62ac-1218-4591-a892-8758be90a063}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Features\ESP">
+      <UniqueIdentifier>{9dfa7603-a77f-40d5-90e6-aafdc6a353b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{b9bf4e71-3c6d-4711-a8ec-61d63cf43273}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils\Math">
+      <UniqueIdentifier>{83d0f39c-3048-49eb-9b5f-e63435c89246}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hooks">
+      <UniqueIdentifier>{0b6e1337-4454-413d-ab70-6fff8b87372b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils\Settings">
+      <UniqueIdentifier>{4c68d5cd-ed29-405b-b90c-1e09e2f56617}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Features\Bhop">
+      <UniqueIdentifier>{8a21cd19-11ed-4560-8f46-77eac6a5ec9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDK\Interfaces">
+      <UniqueIdentifier>{dcda6257-f471-423a-9e74-f04261633f0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDK\Classes">
+      <UniqueIdentifier>{ba8f96ea-7f5e-4b26-aa44-7d0b6901c1fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDK\Other">
+      <UniqueIdentifier>{911b6770-4a27-4d54-8b91-31172b186a78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDK\Utils">
+      <UniqueIdentifier>{3532913f-293c-48a8-a9e7-308f357077fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils\DrawManager">
+      <UniqueIdentifier>{0f6aaa1d-670c-41b0-8dd5-fb2207c5b262}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils\ColorManager">
+      <UniqueIdentifier>{a7658cae-4497-4d09-b453-4611472476a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Features\AutoStrafe">
+      <UniqueIdentifier>{66ad46f7-7d39-4fef-8255-254b5fa41ef5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Menu">
+      <UniqueIdentifier>{33129423-0a8d-4a97-a039-752230dc3860}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

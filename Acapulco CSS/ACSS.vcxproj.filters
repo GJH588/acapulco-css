@@ -177,5 +177,8 @@
     <Filter Include="Menu">
       <UniqueIdentifier>{33129423-0a8d-4a97-a039-752230dc3860}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Features\Aimbot">
+      <UniqueIdentifier>{7746e97e-60bc-4428-9e7f-2c2826bae62e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

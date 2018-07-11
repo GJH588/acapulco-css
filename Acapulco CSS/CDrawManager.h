@@ -17,6 +17,7 @@ public:
 	byte GetHUDHeight( );
 	void DrawBox( Vector vOrigin, int r, int g, int b, int alpha, int box_width, int radius );
 	void DrawRect( int x, int y, int w, int h, DWORD dwColor );
+	void DrawLine(int x, int y, int x1, int y1, DWORD dwColor);
 	void OutlineRect( int x, int y, int w, int h, DWORD dwColor );
 	bool WorldToScreen( Vector &vOrigin, Vector &vScreen );
 	bool ScreenTransform( const Vector &point, Vector &screen );

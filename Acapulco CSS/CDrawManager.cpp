@@ -69,6 +69,12 @@ void CDrawManager::DrawRect(int x, int y, int w, int h, DWORD dwColor)
 	pSurface->DrawFilledRect(x, y, x + w, y + h);
 }
 
+void CDrawManager::DrawLine(int x, int y, int x1, int y1, DWORD dwColor)
+{
+	pSurface->DrawSetColor(RED(dwColor), GREEN(dwColor), BLUE(dwColor), ALPHA(dwColor));
+	pSurface->DrawLine(x, y, x1, y1);
+}
+
 void CDrawManager::OutlineRect(int x, int y, int w, int h, DWORD dwColor)
 {
 	pSurface->DrawSetColor(RED(dwColor), GREEN(dwColor), BLUE(dwColor), ALPHA(dwColor));

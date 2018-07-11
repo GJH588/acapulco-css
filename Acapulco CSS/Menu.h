@@ -1,6 +1,9 @@
 #pragma once
 
 #include <windows.h>
+#include <iostream>
+#include <array>
+#include <vector>
 
 typedef struct CMenuItems_t
 {
@@ -10,14 +13,16 @@ typedef struct CMenuItems_t
 	float flMax;
 	float flStep;
 	bool isTab;
+	std::vector<std::string> arr;
 };
 
 class CMenu
 {
 public:
-	int add(int index, char szTitle[30], float *value, float flMin, float flMax, float flStep, bool isTab);
-	void Render(void);
-	void DrawMenu(void);
+	//int add(int index, char szTitle[30], float *value, float flMin, float flMax, float flStep, bool isTab);
+	int add(int index, char szTitle[30], float * value, float flMin, float flMax, float flStep, bool isTab, std::vector<std::string> arr);
+	void Render();
+	void DrawMenu();
 
 	bool bActive;
 	int iIndex;

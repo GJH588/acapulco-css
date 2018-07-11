@@ -13,6 +13,7 @@ void CPlayerVariables::FindOffsets()
 	this->m_ArmorValue = getOffset("DT_CSPlayer", "m_ArmorValue");
 	this->m_bIsDefusing = getOffset("DT_CSPlayer", "m_bIsDefusing");
 	this->m_iAccount = getOffset("DT_CSPlayer", "m_iAccount");
+	this->m_vecPunchAngle = getOffset("DT_BasePlayer", "m_vecPunchAngle");
 	this->m_vecPunch = 0xE38;
 }
 

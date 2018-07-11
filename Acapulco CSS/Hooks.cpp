@@ -68,7 +68,7 @@ void __stdcall hkPaintTraverse(unsigned int vguiPanel, bool forceRepaint, bool a
 
 	if (vguiMatSystemTopPanel == vguiPanel)
 	{
-		if (pEngine->IsDrawingLoadingImage() || !pEngine->IsInGame() || !pEngine->IsConnected() || pEngine->Con_IsVisible() || pEngine->IsTakingScreenshot())
+		if (pEngine->IsDrawingLoadingImage() || !pEngine->IsInGame() || !pEngine->IsConnected() || pEngine->Con_IsVisible() || (pEngine->IsTakingScreenshot() && Settings::Misc::AntiSS))
 			return;
 
 		if (gMenu.bActive)
@@ -120,7 +120,7 @@ int __stdcall hkKeyEvent(int eventcode, int keynum, const char *pszCurrentBindin
 				if(gMenu.pMenu[gMenu.iIndex].value )
 				{
 					gMenu.pMenu[gMenu.iIndex].value[0] -= gMenu.pMenu[gMenu.iIndex].flStep;
-					if(gMenu.pMenu[gMenu.iIndex].value[0] < gMenu.pMenu[gMenu.iIndex].flMin )
+					if(gMenu.pMenu[gMenu.iIndex].value[0] < gMenu.pMenu[gMenu.iIndex].flMin)
 						gMenu.pMenu[gMenu.iIndex].value[0] = gMenu.pMenu[gMenu.iIndex].flMax;
 				}
 				return 0;

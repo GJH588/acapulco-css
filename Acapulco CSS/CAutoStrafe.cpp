@@ -5,7 +5,7 @@ void CAutoStrafe::Hook(CUserCmd* cmd)
 	if (!Settings::AutoStrafe::Enabled)
 		return;
 
-	CSetupPlayer pLocal = gPlayers[me];
+	CSetupPlayer pLocal = gPlayers[LOCALPLAYER];
 	CBaseEntity* eLocal = pLocal.BaseEnt();
 
 	if (!eLocal)

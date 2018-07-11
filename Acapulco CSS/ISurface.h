@@ -19,6 +19,11 @@ public:
 		typedef void(__thiscall* OriginalFn)(PVOID, int, int, int, int);
 		getvfunc<OriginalFn>(this, 14)(this, x0, y0, x1, y1);
 	}
+	void DrawLine(int x0, int y0, int x1, int y1)
+	{
+		typedef void(__thiscall* DrawLineFn)(void*, int, int, int, int);
+		getvfunc<DrawLineFn>(this, 15)(this, x0, y0, x1, y1);
+	}
 	void DrawSetTextFont(unsigned long font)
 	{
 		typedef void(__thiscall* OriginalFn)(PVOID, unsigned long);

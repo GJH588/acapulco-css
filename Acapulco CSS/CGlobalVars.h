@@ -22,5 +22,6 @@ public:
 	int m_iAccount;
 
 	int m_vecPunch;
+	int m_vecPunchAngle;
 };
 extern CPlayerVariables gPlayerVars;

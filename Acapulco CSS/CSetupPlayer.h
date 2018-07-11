@@ -1,7 +1,7 @@
 #pragma once
 #include "SDK.h"
 
-#define me 1337
+#define LOCALPLAYER 2137
 
 class CSetupPlayer
 {
@@ -19,6 +19,10 @@ public:
 	inline Vector getPunch()
 	{
 		return *MakePtr(Vector*, BaseEnt(), gPlayerVars.m_vecPunch);
+	}
+	inline Vector GetPunchAngle()
+	{
+		return *MakePtr(Vector*, BaseEnt(), gPlayerVars.m_vecPunchAngle);
 	}
 	inline int GetTeam()
 	{
@@ -87,7 +91,7 @@ public:
 
 	inline CSetupPlayer& operator [] (unsigned int i) const
 	{
-		if (i == me)
+		if (i == LOCALPLAYER)
 			return pPlayers[pEngine->GetLocalPlayer()];
 
 		else if (i > 64 || i <= 0)

@@ -10,7 +10,7 @@ enum BOXES_TYPE
 enum BHOP_TYPE
 {
 	BHOP_DEFAULT,
-	BHOP_HUMANIZED
+	BHOP_SMAC
 };
 
 namespace Settings
@@ -24,8 +24,11 @@ namespace Settings
 		
 		extern float Name;
 		extern float Health;
+		extern float Armor;
 		extern float HealthBar;
 		extern float Distance;
+		extern float Bones;
+		extern float HeadDot;
 		extern float Items;
 		extern float DrawTeam;
 	}
@@ -39,5 +42,10 @@ namespace Settings
 	namespace AutoStrafe
 	{
 		extern float Enabled;
+	}
+
+	namespace Misc
+	{
+		extern float AntiSS;
 	}
 }

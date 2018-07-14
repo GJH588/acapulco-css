@@ -7,12 +7,28 @@
 #include <windows.h>
 #include <math.h>
 #include <xstring>
-#include "Vector.h"
+
 #include "getvfunc.h"
 #include "dt_recv2.h"
-#include "Utils.h"
+#include "VMT Hook.h"
 
+#include <d3dx9.h>
+#include "imgui.h"
+#include "imgui_impl_dx9.h"
+
+#include "Vector.h"
+#include "Vector2.h"
+
+#include "Color.h"
+#include "Font.h"
+#include "Fonts.h"
+#include "IconsFontAwesome.h"
+
+#include "Utils.h"
 #include "Settings.h"
+
+#include "Hooks.h"
+#include "Menu.h"
 
 using namespace std;
 

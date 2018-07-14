@@ -44,14 +44,18 @@ public:
 		typedef void(__thiscall* OriginalFn)(PVOID, const wchar_t *, int, int);
 		return getvfunc<OriginalFn>(this, 22)(this, text, textLen, 0);
 	}
-	unsigned long CreateFont()
+	void GetCursorPosition(int &x, int &y)
 	{
-		typedef unsigned int(__thiscall* OriginalFn)(PVOID);
-		return getvfunc<OriginalFn>(this, 66)(this);
+		return getvfunc<void(__thiscall *)(void*, int &, int &)>(this, 96)(this, x, y);
 	}
 	void SetFontGlyphSet(unsigned long &font, const char *windowsFontName, int tall, int weight, int blur, int scanlines, int flags)
 	{
 		typedef void(__thiscall* OriginalFn)(PVOID, unsigned long, const char*, int, int, int, int, int, int, int);
 		getvfunc<OriginalFn>(this, 67)(this, font, windowsFontName, tall, weight, blur, scanlines, flags, 0, 0);
+	}
+	unsigned long CreateFont()
+	{
+		typedef unsigned int(__thiscall* OriginalFn)(PVOID);
+		return getvfunc<OriginalFn>(this, 66)(this);
 	}
 };

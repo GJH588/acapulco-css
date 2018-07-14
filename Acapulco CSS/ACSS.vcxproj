@@ -15,7 +15,7 @@
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>basehook</RootNamespace>
     <ProjectName>Acapulco CSS</ProjectName>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -47,8 +47,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <TargetName>acapulco-css</TargetName>
-    <IncludePath>$(IncludePath)</IncludePath>
-    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -95,9 +95,15 @@
     <ClCompile Include="CBhop.cpp" />
     <ClCompile Include="CDrawManager.cpp" />
     <ClCompile Include="CGlobalVars.cpp" />
+    <ClCompile Include="CRecorder.cpp" />
+    <ClCompile Include="Font.cpp" />
+    <ClCompile Include="Fonts.cpp" />
+    <ClCompile Include="imgui.cpp" />
+    <ClCompile Include="imgui_demo.cpp" />
+    <ClCompile Include="imgui_draw.cpp" />
+    <ClCompile Include="imgui_impl_dx9.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Hooks.cpp" />
-    <ClCompile Include="CColorManager.cpp" />
     <ClCompile Include="DLLMain.cpp" />
     <ClCompile Include="Utils.cpp" />
     <ClCompile Include="CESP.cpp" />
@@ -115,25 +121,38 @@
     <ClInclude Include="CGlobalVars.h" />
     <ClInclude Include="CHLClient.h" />
     <ClInclude Include="CInput.h" />
+    <ClInclude Include="Color.h" />
+    <ClInclude Include="CRecorder.h" />
     <ClInclude Include="CScreen.h" />
     <ClInclude Include="CSetupPlayer.h" />
     <ClInclude Include="CTrace.h" />
     <ClInclude Include="CUserCmd.h" />
     <ClInclude Include="CVerifiedUserCmd.h" />
+    <ClInclude Include="Font.h" />
+    <ClInclude Include="Fonts.h" />
+    <ClInclude Include="IconsFontAwesome.h" />
+    <ClInclude Include="imconfig.h" />
+    <ClInclude Include="imgui.h" />
+    <ClInclude Include="imgui_impl_dx9.h" />
+    <ClInclude Include="imgui_internal.h" />
     <ClInclude Include="IPanel.h" />
     <ClInclude Include="ISurface.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Hooks.h" />
-    <ClInclude Include="CColorManager.h" />
     <ClInclude Include="crc32.h" />
     <ClInclude Include="getvfunc.h" />
     <ClInclude Include="mathlib.h" />
     <ClInclude Include="player_info_t.h" />
     <ClInclude Include="CESP.h" />
     <ClInclude Include="SDK.h" />
+    <ClInclude Include="Singleton.h" />
+    <ClInclude Include="stb_rect_pack.h" />
+    <ClInclude Include="stb_textedit.h" />
+    <ClInclude Include="stb_truetype.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="Settings.h" />
     <ClInclude Include="Vector.h" />
+    <ClInclude Include="Vector2.h" />
     <ClInclude Include="VMT Hook.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -13,26 +13,20 @@ void CDrawManager::Initialize()
 		return;
 
 	pEngine->GetScreenSize(gScreen.iWidth, gScreen.iHeight);
-
-	m_ESPFont = pSurface->CreateFont();
-	m_HUDFont = pSurface->CreateFont();
-	
-	pSurface->SetFontGlyphSet(m_ESPFont, "Tahoma", ESP_HEIGHT, 300, 0, 0, 0x080);
-	pSurface->SetFontGlyphSet(m_HUDFont, "Tahoma", HUD_HEIGHT, 500, 0, 0, 0x200);
 }
 
-void CDrawManager::DrawString(bool HUDFont, int x, int y, DWORD dwColor, const wchar_t *pszText)
+void CDrawManager::DrawString(HFont font, int x, int y, Color color, const wchar_t *pszText)
 {
 	if (!pszText)
 		return;
 
 	pSurface->DrawSetTextPos(x, y);
-	pSurface->DrawSetTextFont(HUDFont ? m_HUDFont : m_ESPFont);
-	pSurface->DrawSetTextColor(RED(dwColor), GREEN(dwColor), BLUE(dwColor), ALPHA(dwColor));
+	pSurface->DrawSetTextFont(font);
+	pSurface->DrawSetTextColor(color.r(), color.g(), color.b(), color.a());
 	pSurface->DrawPrintText(pszText, wcslen(pszText));
 }
 
-void CDrawManager::DrawString(bool HUDFont, int x, int y, DWORD dwColor, const char *pszText, ...)
+void CDrawManager::DrawString(HFont font, int x, int y, Color color, const char *pszText, ...)
 {
 	if (!pszText)
 		return;
@@ -48,8 +42,8 @@ void CDrawManager::DrawString(bool HUDFont, int x, int y, DWORD dwColor, const c
 	wsprintfW(szString, L"%S", szBuffer);
 
 	pSurface->DrawSetTextPos(x, y);
-	pSurface->DrawSetTextFont(HUDFont ? m_HUDFont : m_ESPFont);
-	pSurface->DrawSetTextColor(RED(dwColor), GREEN(dwColor), BLUE(dwColor), ALPHA(dwColor));
+	pSurface->DrawSetTextFont(font);
+	pSurface->DrawSetTextColor(color.r(), color.g(), color.b(), color.a());
 	pSurface->DrawPrintText(szString, wcslen(szString));
 }
 
@@ -63,29 +57,29 @@ byte CDrawManager::GetHUDHeight()
 	return HUD_HEIGHT;
 }
 
-void CDrawManager::DrawRect(int x, int y, int w, int h, DWORD dwColor)
+void CDrawManager::DrawRect(int x, int y, int w, int h, Color dwColor)
 {
-	pSurface->DrawSetColor(RED(dwColor), GREEN(dwColor), BLUE(dwColor), ALPHA(dwColor));
+	pSurface->DrawSetColor(dwColor.r(), dwColor.g(), dwColor.b(), dwColor.a());
 	pSurface->DrawFilledRect(x, y, x + w, y + h);
 }
 
-void CDrawManager::DrawLine(int x, int y, int x1, int y1, DWORD dwColor)
+void CDrawManager::DrawLine(int x, int y, int x1, int y1, Color dwColor)
 {
-	pSurface->DrawSetColor(RED(dwColor), GREEN(dwColor), BLUE(dwColor), ALPHA(dwColor));
+	pSurface->DrawSetColor(dwColor.r(), dwColor.g(), dwColor.b(), dwColor.a());
 	pSurface->DrawLine(x, y, x1, y1);
 }
 
-void CDrawManager::OutlineRect(int x, int y, int w, int h, DWORD dwColor)
+void CDrawManager::OutlineRect(int x, int y, int w, int h, Color dwColor)
 {
-	pSurface->DrawSetColor(RED(dwColor), GREEN(dwColor), BLUE(dwColor), ALPHA(dwColor));
+	pSurface->DrawSetColor(dwColor.r(), dwColor.g(), dwColor.b(), dwColor.a());
 	pSurface->DrawOutlinedRect(x, y, x + w, y + h);
 }
 
-void CDrawManager::OutlinedBox(int x, int y, int w, int h, DWORD dwColor)
+void CDrawManager::OutlinedBox(int x, int y, int w, int h, Color dwColor)
 {
 	OutlineRect(x - w, y, w * 2, h, dwColor);
-	OutlineRect(x - w - 1, y - 1, w * 2 + 2, h + 2, COLORCODE(0, 0, 0, 255));
-	OutlineRect(x - w + 1, y + 1, w * 2 - 2, h - 2, COLORCODE(0, 0, 0, 255));
+	OutlineRect(x - w - 1, y - 1, w * 2 + 2, h + 2, Color(0, 0, 0, 255));
+	OutlineRect(x - w + 1, y + 1, w * 2 - 2, h - 2, Color(0, 0, 0, 255));
 }
 
 void CDrawManager::DrawBox(Vector vOrigin, int r, int g, int b, int alpha, int box_width, int radius)
@@ -99,10 +93,10 @@ void CDrawManager::DrawBox(Vector vOrigin, int r, int g, int b, int alpha, int b
 
 	OutlineRect(vScreen.x - radius + box_width, vScreen.y - radius + box_width, radius2 - box_width, radius2 - box_width, 0x000000FF);
 	OutlineRect(vScreen.x - radius - 1, vScreen.y - radius - 1, radius2 + (box_width + 2), radius2 + (box_width + 2), 0x000000FF);
-	DrawRect(vScreen.x - radius + box_width, vScreen.y - radius, radius2 - box_width, box_width, COLORCODE(r, g, b, alpha));
-	DrawRect(vScreen.x - radius, vScreen.y + radius, radius2, box_width, COLORCODE(r, g, b, alpha));
-	DrawRect(vScreen.x - radius, vScreen.y - radius, box_width, radius2, COLORCODE(r, g, b, alpha));
-	DrawRect(vScreen.x + radius, vScreen.y - radius, box_width, radius2 + box_width, COLORCODE(r, g, b, alpha));
+	DrawRect(vScreen.x - radius + box_width, vScreen.y - radius, radius2 - box_width, box_width, Color(r, g, b, alpha));
+	DrawRect(vScreen.x - radius, vScreen.y + radius, radius2, box_width, Color(r, g, b, alpha));
+	DrawRect(vScreen.x - radius, vScreen.y - radius, box_width, radius2, Color(r, g, b, alpha));
+	DrawRect(vScreen.x + radius, vScreen.y - radius, box_width, radius2 + box_width, Color(r, g, b, alpha));
 }
 
 bool CDrawManager::WorldToScreen(Vector &vOrigin, Vector &vScreen)
@@ -150,7 +144,7 @@ bool CDrawManager::ScreenTransform(const Vector &point, Vector &screen)
 	return behind;
 }
 
-void CDrawManager::DrawPlayerBox(CBaseEntity *pEnt, DWORD dwColor)
+void CDrawManager::DrawPlayerBox(CBaseEntity *pEnt, Color dwColor)
 {
 	if (!pEnt)
 		return;
@@ -181,15 +175,15 @@ void CDrawManager::DrawPlayerBox(CBaseEntity *pEnt, DWORD dwColor)
 
 }
 
-void CDrawManager::DrawHealthBar(int x, int y, float health, int w, int h, DWORD color)
+void CDrawManager::DrawHealthBar(int x, int y, float health, int w, int h, Color color)
 {
 	float red = 255 - (health * 2.55);
 	float green = health * 2.55;
 	x -= w / 2;
 	y -= h / 2;
-	DrawRect(x, y, w, h + 1, COLORCODE(20, 20, 20, 255));
+	DrawRect(x, y, w, h + 1, Color(20, 20, 20, 255));
 	UINT hw = (UINT)(((w - 2) * health) / 100);
-	DrawRect(x + 1, y + 1, hw, h - 1, COLORCODE((int)red, (int)green, 0, 255));
+	DrawRect(x + 1, y + 1, hw, h - 1, Color((int)red, (int)green, 0, 255));
 }
 
 bool CDrawManager::GetBonePosition(CBaseEntity* pPlayer, Vector& Hitbox, int Bone)

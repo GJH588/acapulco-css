@@ -1,25 +1,30 @@
 #include "Settings.h"
 
+// Menu
+bool Settings::Menu::Enabled = false;
+int Settings::Menu::Tab = 0;
+
 // ESP
-float Settings::ESP::Enabled = false;
-float Settings::ESP::Boxes = false;
+bool Settings::ESP::Enabled = false;
+bool Settings::ESP::Boxes = false;
 BOXES_TYPE Settings::ESP::BoxesType = BOXES_TYPE::BOXES_DEFAULT;
-float Settings::ESP::Name = false;
-float Settings::ESP::Health = false;
-float Settings::ESP::Armor = false;
-float Settings::ESP::HealthBar = false;
-float Settings::ESP::Bones = false;
-float Settings::ESP::HeadDot = false;
-float Settings::ESP::Distance = false;
-float Settings::ESP::Items = false;
-float Settings::ESP::DrawTeam = false;
+bool Settings::ESP::Name = false;
+bool Settings::ESP::Health = false;
+bool Settings::ESP::Armor = false;
+bool Settings::ESP::HealthBar = false;
+bool Settings::ESP::Bones = false;
+bool Settings::ESP::HeadDot = false;
+bool Settings::ESP::Distance = false;
+bool Settings::ESP::Items = false;
+bool Settings::ESP::DrawTeam = false;
 
 // Bhop
-float Settings::Bhop::Enabled = false;
+bool Settings::Bhop::Enabled = false;
 BHOP_TYPE Settings::Bhop::BhopType = BHOP_TYPE::BHOP_DEFAULT;
 
 // AutoStrafe
-float Settings::AutoStrafe::Enabled = false;
+bool Settings::AutoStrafe::Enabled = false;
 
 // Misc
-float Settings::Misc::AntiSS = false;
+bool Settings::Misc::AntiSS = false;
+bool Settings::Misc::Recorder = false;

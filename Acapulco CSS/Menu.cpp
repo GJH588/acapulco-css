@@ -1,137 +1,98 @@
-#include <windows.h>
 #include "Menu.h"
-#include "CDrawManager.h"
-#include "CColorManager.h"
+#include "CRecorder.h"
 
-CMenu gMenu;
+const char* BoxesType[] = { "Defualt", "Outline" };
+const char* BhopType[] = { "Defualt", "SMAC" };
 
-float tabEsp = false;
-float tabOther = false;
-float tabOptions = false;
-
-int CMenu::add(int index, char szTitle[30], float* value, float flMin, float flMax, float flStep, bool isTab, std::vector<std::string> arr)
+void BtnNormal()
 {
-	strcpy(pMenu[index].szTitle, szTitle);
-	pMenu[index].value = value;
-	pMenu[index].flMin = flMin;
-	pMenu[index].flMax = flMax;
-	pMenu[index].flStep = flStep;
-	pMenu[index].isTab = isTab;
-	pMenu[index].arr = arr;
-	return(index + 1);
+	auto& style = ImGui::GetStyle();
+
+	style.Colors[ImGuiCol_Button] = ImVec4(0.10, 0.10, 0.10, .98f);
+	style.Colors[ImGuiCol_ButtonHovered] = ImVec4(0.13f, 0.13f, 0.13f, 1.f);
+	style.Colors[ImGuiCol_ButtonActive] = ImVec4(0.14f, 0.14f, 0.14f, 1.f);
 }
 
-void RGB_DWORD(DWORD &dwColor, BYTE r, BYTE g, BYTE b)
+void BtnActive()
 {
-	dwColor = (r << 24) | (g << 16) | (b << 8);
+	auto& style = ImGui::GetStyle();
+
+	style.Colors[ImGuiCol_Button] = ImVec4(0.5098f, 0.00f, 0.00f, 1.00f);
+	style.Colors[ImGuiCol_ButtonHovered] = ImVec4(0.5098f, 0.00f, 0.00f, 1.00f);
+	style.Colors[ImGuiCol_ButtonActive] = ImVec4(0.5098f, 0.00f, 0.00f, 1.00f);
 }
 
-void CMenu::Render()
+void EspTab()
 {
-	int i = 0;
+	ImGui::Checkbox("Enabled", &Settings::ESP::Enabled);
+	ImGui::Checkbox("Boxes", &Settings::ESP::Boxes);
+	ImGui::Checkbox("Name", &Settings::ESP::Name);
+	ImGui::Checkbox("Health", &Settings::ESP::Health);
+	ImGui::Checkbox("Health Bar", &Settings::ESP::HealthBar);
+	ImGui::Checkbox("Distance", &Settings::ESP::Distance);
+	ImGui::Checkbox("Bones", &Settings::ESP::Bones);
+	ImGui::Checkbox("Head Dot", &Settings::ESP::HeadDot);
+	ImGui::Checkbox("Items", &Settings::ESP::Items);
+	ImGui::Checkbox("Draw Team", &Settings::ESP::DrawTeam);
+}
+
+void OtherTab()
+{
+	ImGui::Checkbox("Bhop", &Settings::Bhop::Enabled);
+	ImGui::Checkbox("Auto Strafe", &Settings::AutoStrafe::Enabled);
+	ImGui::Checkbox("Anti SS", &Settings::Misc::AntiSS);
+	ImGui::Checkbox("Recorder", &Settings::Misc::Recorder);
+}
+
+void OptionsTab()
+{
+	ImGui::Columns(2, NULL, true);
 	{
-		i = add(i, "ESP", &tabEsp, 0, 1, 1, true, {});
-		if (tabEsp)
-		{
-			i = add(i, "  - Boxes", &Settings::ESP::Boxes, 0, 1, 1, false, {});
-			i = add(i, "  - Names", &Settings::ESP::Name, 0, 1, 1, false, {});
-			i = add(i, "  - Draw Team", &Settings::ESP::DrawTeam, 0, 1, 1, false, {});
-			i = add(i, "  - Health", &Settings::ESP::Health, 0, 1, 1, false, {});
-			i = add(i, "  - Health Bar", &Settings::ESP::HealthBar, 0, 1, 1, false, {});
-			i = add(i, "  - Armor", &Settings::ESP::Armor, 0, 1, 1, false, {});
-			i = add(i, "  - Bones", &Settings::ESP::Bones, 0, 1, 1, false, {});
-			i = add(i, "  - Head Dot", &Settings::ESP::HeadDot, 0, 1, 1, false, {});
-			i = add(i, "  - Distance", &Settings::ESP::Distance, 0, 1, 1, false, {});
-			i = add(i, "  - Items", &Settings::ESP::Items, 0, 1, 1, false, {});
-		}
-
-		i = add(i, "Other", &tabOther, 0, 1, 1, true, {});
-		if (tabOther)
-		{
-			i = add(i, "  - Bhop", &Settings::Bhop::Enabled, 0, 1, 1, false, {});
-			i = add(i, "  - Auto Strafe", &Settings::AutoStrafe::Enabled, 0, 1, 1, false, {});
-			i = add(i, "  - Anti SS", &Settings::Misc::AntiSS, 0, 1, 1, false, {});
-		}
-
-		i = add(i, "Options", &tabOptions, 0, 1, 1, true, {});
-		if (tabOptions)
-		{
-			i = add(i, "  - Bhop", (float*)&Settings::Bhop::BhopType, 0, 1, 1, false, { "Default", "SMAC" });
-			i = add(i, "  - Boxes", (float*)&Settings::ESP::BoxesType, 0, 1, 1, false, { "Default", "Outline" });
-		}
+		ImGui::Text("Boxes");
+		ImGui::Text("Bhop");
 	}
-	iItems = i;
+	ImGui::NextColumn();
+	{
+		ImGui::PushItemWidth(-1);
+		ImGui::Combo("##BOXESTYPE", (int*)&Settings::ESP::BoxesType, BoxesType, IM_ARRAYSIZE(BoxesType));
+		ImGui::Combo("##BHOPTYPE", (int*)&Settings::Bhop::BhopType, BhopType, IM_ARRAYSIZE(BhopType));
+		ImGui::PopItemWidth();
+	}
+	ImGui::Columns(1);
 }
 
-void CMenu::DrawMenu()
+void CMenu::Draw()
 {
-	int x = 10,
-		xx = x + 75,
-		y = 300,
-		w = 120,
-		h = 13;
-
-	gDrawManager.DrawRect(x, y - (h + 4), w, iItems * 13 + 21, COLORCODE(0, 0, 0, 200));
-	gDrawManager.OutlineRect(x, y - (h + 4), w, iItems * 13 + 21, COLORCODE(255, 0, 255, 255));
-
-	gDrawManager.DrawString(true, x + 10, y - 15, COLORCODE(255, 0, 255, 255), "Acapulco CSS");
-
-	for (int i = 0; i < iItems; i++)
+	ImGui::SetNextWindowSize(ImVec2(200, 100));
+	ImGui::Begin(ICON_FA_SHIELD " Acapulco CSS", &Settings::Menu::Enabled, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
 	{
-		if (i != iIndex)
+		ImGui::BeginChild("##TABCHILD", ImVec2(56, -1), true);
 		{
-			if (pMenu[i].isTab)
-			{
-				if (pMenu[i].value[0])
-				{
-					gDrawManager.DrawString(true, x + 2, y + (13 * i), COLORCODE(255, 0, 255, 255), " [-] %s", pMenu[i].szTitle);
-				}
-				else
-				{
-					gDrawManager.DrawString(true, x + 2, y + (13 * i), COLORCODE(255, 0, 255, 255), " [+] %s", pMenu[i].szTitle);
-				}
-			}
-			else
-			{
-				
-				if (pMenu[i].arr.empty())
-				{
-					gDrawManager.DrawString(true, xx, y + (13 * i), COLORCODE(255, 255, 255, 255), "%0.0f", pMenu[i].value[0]);
-					gDrawManager.DrawString(true, x + 2, y + (13 * i), COLORCODE(255, 255, 255, 255), pMenu[i].szTitle);
-				}
-				else
-				{
-					pMenu[i].arr[pMenu[i].value[0]] == pMenu[i].arr[-1] ? pMenu[i].arr[0] : pMenu[i].arr[pMenu[i].value[0]];
-					gDrawManager.DrawString(true, x + 2, y + (13 * i), COLORCODE(255, 255, 255, 255), pMenu[i].szTitle);
-					gDrawManager.DrawString(true, xx, y + (13 * i), COLORCODE(255, 255, 255, 255), "%s", pMenu[i].arr[pMenu[i].value[0]].c_str());
-				}
-			}
+			if (Settings::Menu::Tab == 0) BtnActive(); else BtnNormal();
+			if (ImGui::Button(ICON_FA_EYE, ImVec2(-1, 16))) { Settings::Menu::Tab = 0; }
+
+			if (Settings::Menu::Tab == 1) BtnActive(); else BtnNormal();
+			if (ImGui::Button(ICON_FA_CROSSHAIRS, ImVec2(-1, 16))) { Settings::Menu::Tab = 1; }
+
+			if (Settings::Menu::Tab == 2) BtnActive(); else BtnNormal();
+			if (ImGui::Button(ICON_FA_PAINT_BRUSH, ImVec2(-1, 16))) { Settings::Menu::Tab = 2; }
+
+			if (Settings::Menu::Tab == 3) BtnActive(); else BtnNormal();
+			if (ImGui::Button(ICON_FA_COG, ImVec2(-1, 16))) { Settings::Menu::Tab = 3; }
+
+			BtnNormal();
 		}
-		else
+		ImGui::EndChild();
+
+		ImGui::SameLine();
+
+		ImGui::BeginChild("##FEATURESCHILD", ImVec2(-1, -1), true);
 		{
-			if (pMenu[i].isTab)
-			{
-				gDrawManager.DrawRect(x + 1, y + (13 * i), w - 2, h, COLORCODE(255, 255, 255, 80));
-				gDrawManager.DrawString(true, x + 2, y + (13 * i), COLORCODE(255, 0, 255, 255), " [+] %s", pMenu[i].szTitle);
-				if (pMenu[i].value[0])
-					gDrawManager.DrawString(true, x + 2, y + (13 * i), COLORCODE(255, 0, 255, 255), " [-] %s", pMenu[i].szTitle);
-			}
-			else
-			{
-				if (pMenu[i].arr.empty())
-				{
-					gDrawManager.DrawRect(x + 1, y + (13 * i), w - 2, h, COLORCODE(255, 255, 255, 80));
-					gDrawManager.DrawString(true, xx, y + (13 * i), COLORCODE(255, 255, 255, 255), "%0.0f", pMenu[i].value[0]);
-					gDrawManager.DrawString(true, x + 2, y + (13 * i), COLORCODE(255, 255, 255, 255), pMenu[i].szTitle);
-				}
-				else
-				{
-					gDrawManager.DrawRect(x + 1, y + (13 * i), w - 2, h, COLORCODE(255, 255, 255, 80));
-					pMenu[i].arr[pMenu[i].value[0]] == pMenu[i].arr[-1] ? pMenu[i].arr[0] : pMenu[i].arr[pMenu[i].value[0]];
-					gDrawManager.DrawString(true, x + 2, y + (13 * i), COLORCODE(255, 255, 255, 255), pMenu[i].szTitle);
-					gDrawManager.DrawString(true, xx, y + (13 * i), COLORCODE(255, 255, 255, 255), "%s", pMenu[i].arr[pMenu[i].value[0]].c_str());
-				}
-			}
+			if (Settings::Menu::Tab == 0) { EspTab(); }
+			if (Settings::Menu::Tab == 2) { OtherTab(); }
+			if (Settings::Menu::Tab == 3) { OptionsTab(); }
 		}
+		ImGui::EndChild();
 	}
+	ImGui::End();
 }

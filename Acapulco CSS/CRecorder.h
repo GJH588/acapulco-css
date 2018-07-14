@@ -1,8 +1,9 @@
 #pragma once
 #include "SDK.h"
 
-class CMenu
+class CRecorder
 {
 public:
 	void Draw();
+	void Hook(CUserCmd* cmd);
 };

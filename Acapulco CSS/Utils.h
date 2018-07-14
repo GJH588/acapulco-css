@@ -11,6 +11,7 @@ private:
 
 public:
 	DWORD FindPattern(DWORD, DWORD, BYTE*, char*);
+	uintptr_t FindPatternEx(const char * szModule, const char * szSignature);
 	HMODULE GetModuleHandleSafe(const char* pszModuleName);
 	DWORD GetClientSignature(char* chPattern, char* chMask);
 	DWORD GetEngineSignature(char* chPattern, char* chMask);

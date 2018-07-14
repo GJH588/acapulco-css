@@ -1,8 +1,10 @@
 #include "SDK.h"
 #include "CGlobalVars.h"
+#include <iostream>
 
 void CPlayerVariables::FindOffsets()
 {
+	this->m_vecPunchAngle = 0x1C;
 	this->m_iHealth = getOffset("DT_BasePlayer", "m_iHealth");
 	this->m_lifeState = getOffset("DT_BasePlayer", "m_lifeState");
 	this->m_fFlags = getOffset("DT_BasePlayer", "m_fFlags");
@@ -13,7 +15,6 @@ void CPlayerVariables::FindOffsets()
 	this->m_ArmorValue = getOffset("DT_CSPlayer", "m_ArmorValue");
 	this->m_bIsDefusing = getOffset("DT_CSPlayer", "m_bIsDefusing");
 	this->m_iAccount = getOffset("DT_CSPlayer", "m_iAccount");
-	this->m_vecPunchAngle = getOffset("DT_BasePlayer", "m_vecPunchAngle");
 	this->m_vecPunch = 0xE38;
 }
 

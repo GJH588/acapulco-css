@@ -1,6 +1,6 @@
 #include "CESP.h"
 
-void CESP::DrawBone(CBaseEntity* pEntity, int* iBones, int count, DWORD dwCol)
+void CESP::DrawBone(CBaseEntity* pEntity, int* iBones, int count, Color dwCol)
 {
 	for (int i = 0; i < count; i++)
 	{
@@ -60,7 +60,6 @@ void CESP::DrawPlayers(int i)
 		return;
 
 	int iTeam = _pBaseEntity.GetTeam();
-	DWORD dwTeamColor = gColorManager.GetColor(iTeam);
 
 	Vector vOrigin = pBaseEntity->GetAbsOrigin();
 
@@ -78,43 +77,50 @@ void CESP::DrawPlayers(int i)
 		{
 			if (Settings::ESP::BoxesType == BOXES_DEFAULT)
 			{
-				gDrawManager.OutlineRect(vScreen.x - Width / 2, vScreenHead.y, Width, Height, dwTeamColor);
+				gDrawManager.OutlineRect(vScreen.x - Width / 2, vScreenHead.y, Width, Height, Color(255, 255, 255, 255));
 			}
 			else
 			{
-				gDrawManager.OutlineRect(vScreen.x - Width / 2, vScreenHead.y, Width, Height, dwTeamColor);
-				gDrawManager.OutlineRect(vScreen.x - Width / 2 - 1, vScreenHead.y - 1, Width + 2, Height + 2, COLORCODE(0, 0, 0, 255));
-				gDrawManager.OutlineRect(vScreen.x - Width / 2 + 1, vScreenHead.y + 1, Width - 2, Height - 2, COLORCODE(0, 0, 0, 255));
+				gDrawManager.OutlineRect(vScreen.x - Width / 2, vScreenHead.y, Width, Height, Color(255, 255, 255, 255));
+				gDrawManager.OutlineRect(vScreen.x - Width / 2 - 1, vScreenHead.y - 1, Width + 2, Height + 2, Color(0, 0, 0, 255));
+				gDrawManager.OutlineRect(vScreen.x - Width / 2 + 1, vScreenHead.y + 1, Width - 2, Height - 2, Color(0, 0, 0, 255));
 			}
 		}
+
 		if (Settings::ESP::Name)
 		{
-			gDrawManager.DrawString(false, vScreen.x + (Width / 2) + 2, vScreen.y - Height + 6, COLORCODE(255, 255, 255, 255), "%s", pInfo.name);
+			gDrawManager.DrawString(Font::Get().ESP, vScreen.x + (Width / 2) + 2, vScreen.y - Height + 6, Color(255, 255, 255, 255), "%s", pInfo.name);
 			vScreen.y += gDrawManager.GetESPHeight();
 		}
+
 		if (Settings::ESP::Distance)
 		{
-			gDrawManager.DrawString(false, vScreen.x + (Width / 2) + 2, vScreen.y - Height + 6, COLORCODE(255, 255, 255, 255), "[%.0fm]", Distance);
+			gDrawManager.DrawString(Font::Get().ESP, vScreen.x + (Width / 2) + 2, vScreen.y - Height + 6, Color(255, 255, 255, 255), "[%.0fm]", Distance);
 			vScreen.y += gDrawManager.GetESPHeight();
 		}
+
 		if (Settings::ESP::Health)
 		{
-			gDrawManager.DrawString(false, vScreen.x + (Width / 2) + 2, vScreen.y - Height + 6, COLORCODE(255, 255, 255, 255), "%i HP", _pBaseEntity.GetHealth());
+			gDrawManager.DrawString(Font::Get().ESP, vScreen.x + (Width / 2) + 2, vScreen.y - Height + 6, Color(255, 255, 255, 255), "%i HP", _pBaseEntity.GetHealth());
 			vScreen.y += gDrawManager.GetESPHeight();
 		}
+
 		if (Settings::ESP::HealthBar)
 		{
-			gDrawManager.DrawHealthBar(vScreen.x, vScreenHead.y + Height + 1, _pBaseEntity.GetHealth(), Width + 5, 2, COLORCODE(0, 255, 0, 255));
+			gDrawManager.DrawHealthBar(vScreen.x, vScreenHead.y + Height + 1, _pBaseEntity.GetHealth(), Width + 5, 2, Color(0, 255, 0, 255));
 		}
+
 		if (Settings::ESP::Armor)
 		{
-			gDrawManager.DrawString(false, vScreen.x + (Width / 2) + 2, vScreen.y - Height + 6, COLORCODE(255, 255, 255, 255), "%i AP", _pBaseEntity.GetArmor());
+			gDrawManager.DrawString(Font::Get().ESP, vScreen.x + (Width / 2) + 2, vScreen.y - Height + 6, Color(255, 255, 255, 255), "%i AP", _pBaseEntity.GetArmor());
 			vScreen.y += gDrawManager.GetESPHeight();
 		}
+
 		if (Settings::ESP::HeadDot)
 		{
-			gDrawManager.DrawRect(vScreen.x - Width / 8, vScreenHead.y + 6, 3, 3, COLORCODE(255, 255, 255, 255));
+			gDrawManager.DrawRect(vScreen.x - Width / 8, vScreenHead.y + 6, 3, 3, Color(255, 255, 255, 255));
 		}
+
 		if (Settings::ESP::Bones)
 		{
 			int iLeftArmBones[] = { 18, 17, 16, 14 };
@@ -125,13 +131,13 @@ void CESP::DrawPlayers(int i)
 			int iLeftLegBones[] = { 3, 2, 1, 0 };
 			int iRightLegBones[] = { 7, 6, 5, 0 };
 
-			DrawBone(pBaseEntity, iLeftArmBones, 4, dwTeamColor);
-			DrawBone(pBaseEntity, iRightArmBones, 4, dwTeamColor);
+			DrawBone(pBaseEntity, iLeftArmBones, 4, Color(255, 255, 255, 255));
+			DrawBone(pBaseEntity, iRightArmBones, 4, Color(255, 255, 255, 255));
 
-			DrawBone(pBaseEntity, iHeadBones, 3, dwTeamColor);
+			DrawBone(pBaseEntity, iHeadBones, 3, Color(255, 255, 255, 255));
 
-			DrawBone(pBaseEntity, iLeftLegBones, 4, dwTeamColor);
-			DrawBone(pBaseEntity, iRightLegBones, 4, dwTeamColor);
+			DrawBone(pBaseEntity, iLeftLegBones, 4, Color(255, 255, 255, 255));
+			DrawBone(pBaseEntity, iRightLegBones, 4, Color(255, 255, 255, 255));
 		}
 	}
 }
@@ -155,15 +161,14 @@ void CESP::DrawItems(int i)
 		if (!gDrawManager.WorldToScreen(pBaseEntity->GetAbsOrigin(), vScreen))
 			return;
 
-		DWORD dwTeamColor = gColorManager.GetColor(*MakePtr(int*, pBaseEntity, gPlayerVars.m_iTeamNum));
 		if (!(pEntList->GetClientEntityFromHandle(*MakePtr(int*, pBaseEntity, gPlayerVars.m_hOwnerEntity))))
 		{
 			if (strstr(pBaseEntity->GetClientClass()->GetName(), "CWeapon"))
-				gDrawManager.DrawString(false, vScreen.x, vScreen.y, gColorManager.GetColor("null"), "%s", string(pBaseEntity->GetClientClass()->GetName()).substr(7).c_str());
+				gDrawManager.DrawString(Font::Get().ESP, vScreen.x, vScreen.y, Color(255, 255, 255, 255), "%s", string(pBaseEntity->GetClientClass()->GetName()).substr(7).c_str());
 			if (streql(pBaseEntity->GetClientClass()->GetName(), "CAK47"))
-				gDrawManager.DrawString(false, vScreen.x, vScreen.y, gColorManager.GetColor("null"), "AK47");
+				gDrawManager.DrawString(Font::Get().ESP, vScreen.x, vScreen.y, Color(255, 255, 255, 255), "AK47");
 			if (streql(pBaseEntity->GetClientClass()->GetName(), "CC4"))
-				gDrawManager.DrawString(false, vScreen.x, vScreen.y, gColorManager.GetColor("null"), "C4");
+				gDrawManager.DrawString(Font::Get().ESP, vScreen.x, vScreen.y, Color(255, 255, 255, 255), "C4");
 		}
 
 	}

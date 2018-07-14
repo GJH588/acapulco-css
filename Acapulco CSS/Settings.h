@@ -15,37 +15,43 @@ enum BHOP_TYPE
 
 namespace Settings
 {
+	namespace Menu
+	{
+		extern bool Enabled;
+		extern int Tab;
+	}
 	namespace ESP
 	{
-		extern float Enabled;
+		extern bool Enabled;
 		
-		extern float Boxes;
+		extern bool Boxes;
 		extern BOXES_TYPE BoxesType;
 		
-		extern float Name;
-		extern float Health;
-		extern float Armor;
-		extern float HealthBar;
-		extern float Distance;
-		extern float Bones;
-		extern float HeadDot;
-		extern float Items;
-		extern float DrawTeam;
+		extern bool Name;
+		extern bool Health;
+		extern bool Armor;
+		extern bool HealthBar;
+		extern bool Distance;
+		extern bool Bones;
+		extern bool HeadDot;
+		extern bool Items;
+		extern bool DrawTeam;
 	}
 	
 	namespace Bhop
 	{
-		extern float Enabled;
+		extern bool Enabled;
 		extern BHOP_TYPE BhopType;
 	}
 
 	namespace AutoStrafe
 	{
-		extern float Enabled;
+		extern bool Enabled;
 	}
 
 	namespace Misc
 	{
-		extern float AntiSS;
+		extern bool AntiSS;
+		extern bool Recorder;
 	}
 }

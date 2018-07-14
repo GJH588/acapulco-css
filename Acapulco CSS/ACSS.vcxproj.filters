@@ -29,8 +29,26 @@
     <ClCompile Include="CAutoStrafe.cpp">
       <Filter>Features\AutoStrafe</Filter>
     </ClCompile>
-    <ClCompile Include="CColorManager.cpp">
-      <Filter>Utils\ColorManager</Filter>
+    <ClCompile Include="CRecorder.cpp">
+      <Filter>Features\Recorder</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_demo.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_draw.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_impl_dx9.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Font.cpp">
+      <Filter>Utils\Font</Filter>
+    </ClCompile>
+    <ClCompile Include="Fonts.cpp">
+      <Filter>Utils\Font\Fonts</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -124,8 +142,47 @@
     <ClInclude Include="CSetupPlayer.h">
       <Filter>SDK\Classes</Filter>
     </ClInclude>
-    <ClInclude Include="CColorManager.h">
-      <Filter>Utils\ColorManager</Filter>
+    <ClInclude Include="CRecorder.h">
+      <Filter>Features\Recorder</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2.h">
+      <Filter>Utils\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>SDK\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="imconfig.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui_impl_dx9.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui_internal.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="stb_rect_pack.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="stb_textedit.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="stb_truetype.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Font.h">
+      <Filter>Utils\Font</Filter>
+    </ClInclude>
+    <ClInclude Include="IconsFontAwesome.h">
+      <Filter>Utils\Font</Filter>
+    </ClInclude>
+    <ClInclude Include="Fonts.h">
+      <Filter>Utils\Font\Fonts</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -168,9 +225,6 @@
     <Filter Include="Utils\DrawManager">
       <UniqueIdentifier>{0f6aaa1d-670c-41b0-8dd5-fb2207c5b262}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Utils\ColorManager">
-      <UniqueIdentifier>{a7658cae-4497-4d09-b453-4611472476a0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Features\AutoStrafe">
       <UniqueIdentifier>{66ad46f7-7d39-4fef-8255-254b5fa41ef5}</UniqueIdentifier>
     </Filter>
@@ -179,6 +233,18 @@
     </Filter>
     <Filter Include="Features\Aimbot">
       <UniqueIdentifier>{7746e97e-60bc-4428-9e7f-2c2826bae62e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Features\Recorder">
+      <UniqueIdentifier>{c52ab1c7-373c-44d1-99ab-8c56afbdf06e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ImGui">
+      <UniqueIdentifier>{0406023e-59e9-4842-8890-29fee62af32b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils\Font">
+      <UniqueIdentifier>{2e15474c-8c77-43ca-b498-63908254de27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils\Font\Fonts">
+      <UniqueIdentifier>{52075442-cec8-441e-a6d9-fecc28afb9a0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

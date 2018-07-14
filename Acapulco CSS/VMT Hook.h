@@ -1,5 +1,15 @@
 #pragma once
 #include <Windows.h>
+#include <memory>
+#include <Psapi.h>
+#include <chrono>
+#include <thread>
+#include <cstdint>
+#include <unordered_map>
+
+#define INRANGE(x,a,b)  (x >= a && x <= b) 
+#define getBits( x )    (INRANGE((x&(~0x20)),'A','F') ? ((x&(~0x20)) - 'A' + 0xa) : (INRANGE(x,'0','9') ? x - '0' : 0))
+#define getByte( x )    (getBits(x[0]) << 4 | getBits(x[1]))
 
 class CVMTHookManager
 {
@@ -98,4 +108,55 @@ private:
 	PDWORD*	m_ppdwClassBase;
 	PDWORD	m_pdwNewVMT, m_pdwOldVMT;
 	DWORD	m_dwVMTSize;
+};
+
+class CVMTHookManager2
+{
+public:
+	bool IsCodePtr(void* ptr)
+	{
+		constexpr const DWORD protect_flags = PAGE_EXECUTE | PAGE_EXECUTE_READ | PAGE_EXECUTE_READWRITE | PAGE_EXECUTE_WRITECOPY;
+
+		MEMORY_BASIC_INFORMATION out;
+		VirtualQuery(ptr, &out, sizeof out);
+
+		return out.Type
+			&& !(out.Protect & (PAGE_GUARD | PAGE_NOACCESS))
+			&& out.Protect & protect_flags;
+	}
+
+	CVMTHookManager2(void* classptr)
+	{
+		this->m_class_pointer = reinterpret_cast<void***>(classptr);
+		m_old_vmt = *m_class_pointer;
+
+		size_t table_size = 0;
+		while (m_old_vmt[table_size] && IsCodePtr(m_old_vmt[table_size]))
+			table_size++;
+
+		m_new_vmt = new void*[table_size + 1];
+		memcpy(&m_new_vmt[1], m_old_vmt, sizeof(void*) * table_size);
+		m_new_vmt[0] = m_old_vmt[-1];
+
+		*m_class_pointer = &m_new_vmt[1];
+	}
+
+	~CVMTHookManager2()
+	{
+		*m_class_pointer = m_old_vmt;
+		delete[] m_new_vmt;
+	}
+
+	template<typename fn = void*>
+	fn hook(size_t index, void* new_function)
+	{
+		if (new_function)
+			m_new_vmt[index + 1] = new_function;
+		return reinterpret_cast<fn>(m_old_vmt[index]);
+	}
+
+private:
+	void*** m_class_pointer = nullptr;
+	void** m_old_vmt = nullptr;
+	void** m_new_vmt = nullptr;
 };

@@ -38,6 +38,7 @@ Open Source Counter-Strike: Source internal cheat
 - [ ] Spinbot
 - [ ] Event logger
 - [ ] Configs
+- [x] Movement recorder
 
 License
 -------
